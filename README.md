@@ -1,6 +1,8 @@
 # Portfolio de Adrián Barrios
 
-Portfolio estático en HTML, CSS y JavaScript, preparado para publicarse en GitHub Pages.
+Portfolio personal de Adrián Barrios, desarrollado como un sitio estático en HTML, CSS y JavaScript.
+
+Sitio web: [adribarrios05.github.io/portfolio](https://adribarrios05.github.io/portfolio/)
 
 ## Contenido público
 
@@ -10,21 +12,13 @@ Portfolio estático en HTML, CSS y JavaScript, preparado para publicarse en GitH
 - Página de error personalizada en `404.html`.
 - Archivos SEO básicos: `robots.txt` y `sitemap.xml`.
 
-La landing de Parkify permanece local en `landing/` y está excluida mediante `.gitignore` hasta que esté lista.
+## Tecnologías
 
-## Publicación en GitHub Pages
+- HTML5 semántico.
+- CSS responsive con tema claro y oscuro.
+- JavaScript sin dependencias externas.
+- Metadatos Open Graph, sitemap y página 404 personalizada.
 
-1. Crea el repositorio público `adribarrios05.github.io`.
-2. Sube el contenido a la rama `main`.
-3. Abre `Settings > Pages`.
-4. Selecciona `Deploy from a branch`, la rama `main` y la carpeta `/(root)`.
-5. Activa `Enforce HTTPS`.
+## Proyecto destacado
 
-URL prevista: `https://adribarrios05.github.io/`.
-
-## Antes de compartir
-
-- Ejecuta Lighthouse sobre la URL publicada.
-- Comprueba enlaces externos, descarga del CV y vista móvil.
-- Revisa los metadatos sociales con un validador Open Graph.
-- No publiques secretos, credenciales ni datos restringidos.
+El portfolio presenta Parkify, una aplicación móvil orientada a facilitar la búsqueda de aparcamiento urbano. Su caso de estudio resume la arquitectura, la seguridad y las decisiones técnicas del proyecto.
