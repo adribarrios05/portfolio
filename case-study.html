@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Caso de estudio técnico de Parkify: arquitectura, seguridad e integración de una aplicación móvil de estimación de aparcamiento urbano.">
+  <meta property="og:title" content="Parkify | Caso de estudio técnico">
+  <meta property="og:description" content="Arquitectura, seguridad e integración técnica de una aplicación móvil de estimación de aparcamiento urbano.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Portfolio de Adrián Barrios">
+  <meta property="og:url" content="https://adribarrios05.github.io/case-study.html">
+  <meta property="og:image" content="https://adribarrios05.github.io/assets/og-portfolio.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Caso de estudio técnico de Parkify">
+  <title>Parkify: caso de estudio técnico | Adrián Barrios</title>
+  <link rel="canonical" href="https://adribarrios05.github.io/case-study.html">
+  <link rel="icon" href="assets/favicon.png" type="image/png" sizes="64x64">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="header">
+  <nav class="container nav" aria-label="Navegación del caso de estudio">
+    <a class="brand" href="index.html" aria-label="Volver al inicio">AB<span>.</span></a>
+    <a class="button secondary small" href="index.html#proyecto">Volver al portfolio</a>
+  </nav>
+</header>
+<main id="main">
+  <article>
+    <header class="section case-hero">
+      <div class="container narrow reveal">
+        <p class="eyebrow">Caso de estudio técnico</p>
+        <h1>Parkify: predicción de aparcamiento por tramo de calle</h1>
+        <p class="lead">Arquitectura, seguridad y funcionamiento técnico de una aplicación móvil que convierte señales urbanas en estimaciones útiles para buscar aparcamiento.</p>
+        <dl class="case-summary">
+          <div><dt>Aplicación</dt><dd>Flutter</dd></div>
+          <div><dt>Procesamiento</dt><dd>Python y modelos predictivos</dd></div>
+          <div><dt>Servicios</dt><dd>Firebase y Cloud Functions</dd></div>
+        </dl>
+      </div>
+    </header>
+    <section class="section muted">
+      <div class="container narrow copy reveal">
+        <h2>1. El problema técnico</h2>
+        <p>La disponibilidad de aparcamiento en vía pública cambia constantemente y no puede representarse como un dato fijo. Parkify aborda este problema generando una estimación por zonas y proyectándola sobre tramos de calle, una unidad visual útil para comparar alternativas sin prometer una plaza concreta.</p>
+        <p>El objetivo no es sustituir a un sistema de ocupación plaza a plaza, sino reducir la incertidumbre y ayudar al usuario a decidir hacia qué calles merece la pena dirigirse.</p>
+
+        <h2>2. Objetivos del sistema</h2>
+        <ul>
+          <li>Convertir señales heterogéneas en una salida geográfica consistente y comprensible.</li>
+          <li>Generar estimaciones de disponibilidad acompañadas de un nivel de confianza.</li>
+          <li>Presentar el resultado en un mapa móvil que permita comparar calles y navegar hacia la zona elegida.</li>
+          <li>Mantener desacopladas la aplicación, la lógica predictiva y los servicios externos para poder evolucionarlos de forma independiente.</li>
+        </ul>
+
+        <h2>3. Arquitectura y flujo del sistema</h2>
+        <p>Parkify separa la obtención de señales, el procesamiento, la estimación y la presentación. Un pipeline ejecutado fuera de la aplicación prepara la información y publica una salida geográfica ligera. La app consume esa salida sin incorporar el modelo ni las credenciales de los servicios en el dispositivo.</p>
+        <div class="architecture" aria-label="Flujo técnico de Parkify"><span>Señales urbanas</span><b>→</b><span>Pipeline privado</span><b>→</b><span>Capa predictiva</span><b>→</b><span>Distribución segura</span><b>→</b><span>App Flutter</span></div>
+        <p>La capa predictiva trabaja sobre unidades de referencia y una fase posterior traduce el resultado al overlay de tramos que muestra el mapa. Esta separación evita atribuir al modelo una precisión geográfica que no posee y permite sustituir o recalibrar componentes sin modificar la interfaz móvil.</p>
+
+        <h2>4. Alcance de la información publicada</h2>
+        <p>Este caso de estudio explica la arquitectura y las decisiones de ingeniería, pero no expone el funcionamiento interno que diferencia a Parkify. Las fuentes concretas, las variables seleccionadas, sus transformaciones, ponderaciones, reglas de calibración y fórmula de puntuación forman parte de la lógica privada del proyecto.</p>
+        <p>La descripción se limita por tanto a las responsabilidades de cada capa y a cómo se comunican entre sí, información suficiente para evaluar el diseño técnico sin publicar el método de estimación.</p>
+
+        <h2>5. Decisiones técnicas</h2>
+        <ul>
+          <li><strong>Representación por tramo:</strong> ofrece una unidad geográfica útil para comparar calles sin presentar una precisión inexistente.</li>
+          <li><strong>Probabilidad y confianza separadas:</strong> permite distinguir una estimación favorable de otra respaldada por pocas señales.</li>
+          <li><strong>Procesamiento desacoplado:</strong> el cálculo se realiza fuera del cliente móvil y la app recibe únicamente el resultado preparado para visualización.</li>
+          <li><strong>Formato geográfico ligero:</strong> el overlay puede versionarse, distribuirse y actualizarse sin publicar la lógica que lo genera.</li>
+          <li><strong>Responsabilidades separadas:</strong> navegación, predicción, persistencia y presentación evolucionan como componentes independientes.</li>
+        </ul>
+
+        <h2>6. Flujo técnico de la aplicación</h2>
+        <ul>
+          <li>El usuario indica un destino y un radio de búsqueda.</li>
+          <li>La aplicación obtiene las localizaciones y rutas mediante servicios intermedios protegidos.</li>
+          <li>El mapa carga el overlay disponible, selecciona los tramos cercanos y representa su estimación mediante una escala visual.</li>
+          <li>Los filtros permiten ordenar y comparar alternativas sin bloquear la interacción con el mapa.</li>
+          <li>Cuando aparca, el usuario puede registrar la ubicación y mantener una sesión activa para saber en todo momento dónde ha dejado el coche.</li>
+          <li>Al marcharse, puede marcar la plaza como liberada para que otros conductores cercanos reciban esa señal.</li>
+        </ul>
+
+        <h2>7. Aparcamiento colaborativo</h2>
+        <p>Además de las estimaciones del mapa, Parkify incorpora una capa colaborativa basada en acciones explícitas del usuario. Confirmar que ha aparcado permite conservar la posición de su vehículo, mientras que finalizar la sesión comunica que en esa zona acaba de quedar una plaza disponible.</p>
+        <p>Estas señales aportan información reciente y útil para los conductores próximos. Cuando exista un volumen suficiente y representativo, también podrán incorporarse de forma controlada a la capa predictiva. Hasta entonces se mantienen separadas para evitar que una muestra pequeña o irregular distorsione las estimaciones generales.</p>
+
+        <h2>8. Seguridad e integración</h2>
+        <p>Las operaciones que dependen de servicios externos se canalizan a través de Cloud Functions. De este modo, las claves permanecen en el servidor y no se incluyen en el código distribuido de la aplicación. Firebase App Check añade una capa de verificación para reducir el uso no autorizado de estos endpoints.</p>
+        <p>La búsqueda de direcciones y el cálculo de rutas no exigen iniciar sesión, pero siguen pasando por el backend protegido. La autenticación se reserva para las funciones que realmente dependen de la identidad o de información persistida por el usuario.</p>
+
+        <h2>9. Actualización y despliegue</h2>
+        <p>La generación de estimaciones se ha diseñado como un proceso independiente de la app. La arquitectura contempla ejecuciones programadas, publicación de nuevas versiones del overlay y una señal de cambio para que el cliente sepa cuándo existe una actualización.</p>
+        <p>La ruta de automatización está preparada para ejecutarse como un trabajo en la nube y distribuir el resultado mediante Firebase. Mientras se completa su validación operativa, el caso de estudio la presenta como infraestructura en desarrollo y no como un servicio público ya desplegado.</p>
+
+        <h2>10. Validación y límites</h2>
+        <p>La validación combina comprobaciones del pipeline, coherencia geográfica, revisión de resultados y pruebas de integración entre backend y aplicación. Las métricas definitivas no se publicarán hasta contar con una muestra suficientemente representativa.</p>
+        <ul>
+          <li>El resultado expresa una estimación y no la ocupación exacta de una plaza concreta.</li>
+          <li>La confianza puede variar según la cobertura y actualidad de las señales disponibles.</li>
+          <li>La visualización por colores simplifica el resultado para facilitar decisiones rápidas, pero no elimina la incertidumbre.</li>
+          <li>La lógica predictiva necesita continuar ajustándose y verificándose antes de una publicación abierta.</li>
+        </ul>
+
+        <h2>11. Estado actual</h2>
+        <p>La experiencia principal de la aplicación ya incluye búsqueda de destino, consulta del mapa, comparación de tramos, navegación y gestión de una sesión de aparcamiento. El usuario puede recordar dónde está su coche y comunicar cuándo abandona la plaza para ayudar a otros conductores cercanos. La futura incorporación de estas señales al modelo, su calibración y la automatización completa de las actualizaciones permanecen en validación.</p>
+        <p>Por este motivo, la landing y los enlaces de descarga continúan deshabilitados. El portfolio permite acceder únicamente a este caso de estudio hasta que la aplicación esté preparada para una demostración pública estable.</p>
+        <div class="actions"><a class="button primary" href="index.html#proyecto">Volver al proyecto</a><a class="button secondary" href="index.html#contacto">Contactar</a></div>
+      </div>
+    </section>
+  </article>
+</main>
+<footer><div class="container footer"><p>© <span id="year"></span> Adrián Barrios.</p></div></footer>
+</body>
+</html>

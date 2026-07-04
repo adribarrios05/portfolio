@@ -1,0 +1,13 @@
+# Borradores locales no publicados
+landing/
+
+# Fuentes gráficas sustituidas por versiones optimizadas
+assets/logo_parkify.jpeg
+assets/parkify-map-availability.png
+assets/README.txt
+
+# Archivos del sistema y del editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
