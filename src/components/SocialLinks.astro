@@ -1,9 +1,10 @@
 ---
+import { withBase } from '../utils/urls';
 import { profile } from '../data/profile';
 import Arrow from './Arrow.astro';
 ---
 <div class="social-links">
   {profile.github && <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub<Arrow diagonal/><span class="sr-only"> (nueva pestaña)</span></a>}
   {profile.linkedin && <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn<Arrow diagonal/><span class="sr-only"> (nueva pestaña)</span></a>}
-  {profile.cv && <a href={profile.cv} download>Descargar CV<Arrow/></a>}
+  {profile.cv && <a href={withBase(profile.cv)} download>Descargar CV<Arrow/></a>}
 </div>

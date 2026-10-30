@@ -1,14 +1,15 @@
 ---
+import { withBase } from '../utils/urls';
 import { navigation, profile } from '../data/profile';
 interface Props { home?: boolean }
 const { home = false } = Astro.props;
 ---
 <header class="site-header">
   <div class="header-inner container">
-    <a class="wordmark" href="/" aria-label={`${profile.name}, inicio`}>ab<span class="wordmark-dot">.</span><span class="wordmark-name">Adrián Barrios</span></a>
+    <a class="wordmark" href={withBase('/')} aria-label={`${profile.name}, inicio`}>ab<span class="wordmark-dot">.</span><span class="wordmark-name">Adrián Barrios</span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú"><span></span><span></span></button>
     <nav id="primary-nav" aria-label="Navegación principal">
-      {navigation.map(({ id, label }) => <a href={`${home ? '' : '/'}#${id}`} data-nav={id}>{label}</a>)}
+      {navigation.map(({ id, label }) => <a href={`${home ? '' : withBase('/')}#${id}`} data-nav={id}>{label}</a>)}
     </nav>
   </div>
 </header>
