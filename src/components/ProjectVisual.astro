@@ -1,0 +1,30 @@
+---
+interface Props { type: 'data' | 'parking'; large?: boolean }
+const { type, large = false } = Astro.props;
+const heights = [24, 42, 35, 61, 53, 85, 72, 58, 44, 31, 20, 12];
+---
+<div class:list={['project-visual', `visual-${type}`, { 'visual-large': large }]} aria-hidden="true">
+  {type === 'data' ? <div class="data-window">
+    <div class="window-top"><span class="window-dots">● ● ●</span><span>ANALYTIO</span><span>CSV</span></div>
+    <div class="data-body">
+      <div class="data-sidebar"><span class="sidebar-logo">[a]</span><span class="side-line active"></span><span class="side-line"></span><span class="side-line"></span><span class="side-line short"></span></div>
+      <div class="data-main"><div class="data-title">A closer look at your data.<span>dataset / overview</span></div>
+        <div class="data-metrics"><div>Structure<span>columns & types</span></div><div>Quality<span>missing values</span></div><div>Patterns<span>distributions</span></div></div>
+        <div class="chart-label">COLUMN DISTRIBUTION<span>frequency ↗</span></div>
+        <div class="bar-chart">{heights.map((height) => <span style={`--bar-height:${height}%`}></span>)}</div>
+        <div class="data-table"><span>column</span><span>type</span><span>quality</span><span>value</span><span>numeric</span><span>————</span><span>category</span><span>string</span><span>————</span></div>
+      </div>
+    </div>
+  </div> : <div class="map-composition">
+    <svg viewBox="0 0 600 380" fill="none" class="map-grid">
+      <defs><pattern id={`blocks-${large ? 'large' : 'card'}`} width="115" height="95" patternTransform="rotate(-24)" patternUnits="userSpaceOnUse"><rect x="12" y="12" width="89" height="69" rx="4" fill="#202020" stroke="#303030"/><path d="M0 0h115v95" stroke="#4b4b4b" stroke-width="2"/></pattern></defs>
+      <rect width="600" height="380" fill={`url(#blocks-${large ? 'large' : 'card'})`}/>
+      <path d="m55 322 188-84-50-111 186-84" stroke="#666" stroke-width="12"/><path d="m55 322 188-84-50-111 186-84" stroke="#eee" stroke-width="2" stroke-dasharray="5 7"/>
+      <path d="m280 299 73-33m-102-70 74-34m100 53 75-34" stroke="#c0c0c0" stroke-width="5"/>
+      <circle cx="244" cy="238" r="27" fill="#ddd" fill-opacity=".08" stroke="#777"/><circle cx="244" cy="238" r="7" fill="#f2f2f2"/>
+    </svg>
+    <div class="map-label"><span class="mono">P / PARKIFY</span><span>Street-level insights</span></div>
+    <div class="map-floating"><span class="map-symbol">P</span><div>La ciudad, por tramos.<span>Datos → predicciones → mapa</span></div><span>↗</span></div>
+    <div class="map-coordinate mono">URBAN MOBILITY / CONCEPT VIEW</div>
+  </div>}
+</div>

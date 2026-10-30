@@ -1,0 +1,9 @@
+---
+import { profile } from '../data/profile';
+import SocialLinks from './SocialLinks.astro';
+---
+<footer class="site-footer container">
+  <p>© {new Date().getFullYear()} {profile.name}</p>
+  <p class="footer-note">Software, con intención.</p>
+  <SocialLinks/>
+</footer>

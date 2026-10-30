@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Timeline from '../components/Timeline.astro';
+import Arrow from '../components/Arrow.astro';
+import { profile, education, technologies } from '../data/profile';
+import { projects } from '../data/projects';
+---
+<BaseLayout home>
+  <section class="hero container" aria-labelledby="hero-title">
+    <div class="hero-kicker mono"><span class="small-square"></span> {profile.role.toUpperCase()}<span class="hero-edition">PORTFOLIO PERSONAL / 01</span></div>
+    <div class="hero-title-wrap">
+      <h1 id="hero-title">Adrián<br/><span>Barrios<span class="name-period">.</span></span></h1>
+      <div class="engineering-mark" aria-hidden="true"><div class="mark-orbit orbit-one"></div><div class="mark-orbit orbit-two"></div><div class="mark-orbit orbit-three"></div><div class="mark-core">ab.</div><span class="mark-label mono">SYSTEM / HUMAN</span><span class="mark-cross cross-one">+</span><span class="mark-cross cross-two">+</span></div>
+    </div>
+    <div class="hero-bottom">
+      <div><p class="hero-focus">{profile.focus}</p><p class="hero-intro">{profile.introduction}</p></div>
+      <div class="hero-actions"><a class="button button-primary" href="#projects">Explorar proyectos<Arrow/></a><a class="button button-secondary" href="#contact">Hablemos<Arrow diagonal/></a></div>
+    </div>
+    <div class="hero-footer"><SocialLinks/><a class="scroll-hint mono" href="#about">SCROLL TO EXPLORE<span>↓</span></a></div>
+  </section>
+
+  <section id="about" class="section section-surface" data-section aria-labelledby="about-title">
+    <div class="container">
+      <SectionHeading number="01" label="SOBRE MÍ" title="Curiosidad por entender.
+      Criterio para construir."/>
+      <div class="about-grid"><p class="about-statement" id="about-title" data-reveal>Del problema<br/>al sistema.<br/><span>Y de los datos<br/>a las decisiones.</span></p><div class="about-copy" data-reveal>{profile.about.map((paragraph) => <p>{paragraph}</p>)}<span class="mono about-note">APRENDER / CONSTRUIR / ITERAR</span></div></div>
+      <div class="technology-header" data-reveal><h3>Herramientas con las que trabajo</h3><p>Aplicadas en mi experiencia y mis proyectos.</p></div>
+      <div class="technology-grid">{technologies.map((group, index) => <article class="technology-group" data-reveal style={`--reveal-delay:${index % 3 * 70}ms`}><h4 class="mono">{group.category}</h4><ul>{group.items.map((technology) => <li>{technology}</li>)}</ul><p>{group.context}</p></article>)}</div>
+    </div>
+  </section>
+
+  <section id="experience" class="section container" data-section aria-labelledby="experience-label">
+    <div id="experience-label"><SectionHeading number="02" label="EXPERIENCIA" title="El recorrido profesional."/></div>
+    <Timeline/>
+  </section>
+
+  <section id="education" class="section section-surface" data-section aria-labelledby="education-label">
+    <div class="container"><div id="education-label"><SectionHeading number="03" label="FORMACIÓN" title="Una base técnica.
+      Una mirada abierta."/></div>
+      <div class="education-grid">{education.map((item, index) => <article class="education-card" data-reveal style={`--reveal-delay:${index * 90}ms`}><div class="education-top mono"><span>{item.kind}</span><span>0{index + 1}</span></div><h3>{item.title}</h3><p>{item.description}</p><div class="education-meta"><span>{item.institution || 'Institución pendiente'}</span><span class="mono">{item.period || 'Fechas pendientes'}</span></div></article>)}</div>
+    </div>
+  </section>
+
+  <section id="projects" class="section container" data-section aria-labelledby="projects-label">
+    <div class="projects-heading" id="projects-label"><SectionHeading number="04" label="PROYECTOS SELECCIONADOS" title="Ideas que se convierten
+      en software." description="Proyectos personales. Problemas concretos, decisiones técnicas y aprendizaje en cada iteración."/><span class="project-count mono">({String(projects.length).padStart(2, '0')})</span></div>
+    <div class="projects-list">{projects.map((project) => <ProjectCard project={project}/>)}</div>
+    <p class="projects-end mono">EXPLORACIONES EN BACKEND, DATOS Y APLICACIONES.</p>
+  </section>
+
+  <section id="contact" class="section contact-section" data-section aria-labelledby="contact-title">
+    <div class="container"><p class="eyebrow" data-reveal><span class="section-number">05</span> / CONTACTO</p><div class="contact-grid"><div data-reveal><h2 id="contact-title">La próxima idea<br/>empieza con una<br/><span>conversación.</span></h2><p>Busco una oportunidad junior para desarrollar aplicaciones y seguir aprendiendo en equipo.</p></div><div class="contact-details" data-reveal><span class="mono">¿HABLAMOS?</span><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}<Arrow diagonal/></a><a class="button button-primary" href={`mailto:${profile.email}`}>Escríbeme<Arrow diagonal/></a><SocialLinks/>{!profile.cv && <span class="pending-note">CV pendiente de incorporar</span>}</div></div></div>
+  </section>
+</BaseLayout>

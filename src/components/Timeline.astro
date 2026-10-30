@@ -1,0 +1,12 @@
+---
+import { experience, experiencePending } from '../data/profile';
+---
+<div class="timeline">
+  {experience.length ? experience.map((item) => <article class="timeline-item" data-reveal>
+    <div class="timeline-period mono">{item.period}<span>{item.kind}</span></div>
+    <div><h3>{item.role}</h3><p class="timeline-company">{item.company}{item.location && ` · ${item.location}`}</p>{item.stages && <p class="timeline-company">{item.stages.join(' ')}</p>}<ul class="responsibilities">{item.responsibilities.map((responsibility) => <li>{responsibility}</li>)}</ul><ul class="tags">{item.technologies.map((technology) => <li>{technology}</li>)}</ul></div>
+  </article>) : <article class="timeline-item pending-experience" data-reveal>
+    <div class="timeline-period mono">Pendiente de completar<span>Experiencia profesional</span></div>
+    <div><h3>{experiencePending.title}</h3><p>{experiencePending.description}</p><div class="pending-fields mono">{experiencePending.fields.map((field) => <span>{field}</span>)}</div></div>
+  </article>}
+</div>
