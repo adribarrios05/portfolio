@@ -14,7 +14,7 @@ test('home, contact and project case studies are navigable', async ({ page }) =>
     await page.goto(`/projects/${slug}/`);
     await expect(page.getByRole('heading', { name: 'Qué permite hacer', exact: true })).toBeVisible();
     await expect(page.locator('.architecture-flow li')).toHaveCount(4);
-    await expect(page.locator('figcaption')).toContainText(slug === 'simple-calendar' ? 'Captura del proyecto' : 'ilustrativa');
+    await expect(page.locator('.case-figure figcaption')).toContainText(slug === 'parkify' ? 'ilustrativa' : 'Captura del proyecto');
     await page.getByRole('link', { name: '← VOLVER A PROYECTOS' }).click();
     await expect(page).toHaveURL(/\/#projects$/);
   }

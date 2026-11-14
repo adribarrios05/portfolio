@@ -1,5 +1,12 @@
 # Contenido y datos pendientes
 
+## Actualización de Analytio — 14 de noviembre de 2026
+
+- La tarjeta y el caso de estudio enlazan a `https://analytio.app` con «Visitar web».
+- Capturas reales en español copiadas de `analytio/website/src/assets/screenshots/es/`: `overview.png`, `columns.png` y `charts.png`. Se conservan sin modificar en `public/images/analytio-*.png` y muestran el CSV de ventas de ejemplo.
+- El contenido local de la web oficial documenta una beta para Windows y la versión web de la aplicación en preparación. La ficha refleja esa distinción y conserva el código privado y el alcance CSV.
+- Esta actualización sustituye las referencias históricas a capturas pendientes y beta privada de Analytio. No acredita una comprobación del sitio en producción.
+
 ## Estado vigente — 29 de octubre de 2026
 
 - Esta aplicación Astro es la plantilla del nuevo portfolio. El enlace del CV lleva a un portfolio antiguo distinto; no se ha sustituido ni publicado esta versión.

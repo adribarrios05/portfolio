@@ -3,6 +3,7 @@ export interface CaseSection {
   title: string;
   paragraphs?: string[];
   items?: string[];
+  images?: { src: string; alt: string; width: number; height: number; caption: string }[];
 }
 
 export interface Project {
@@ -31,11 +32,13 @@ export const projects: Project[] = [
     category: 'Análisis de datos',
     summary: 'Entender un dataset antes de trabajar con él.',
     problem: 'Una herramienta para explorar la estructura, los tipos y la calidad de archivos tabulares desde distintas interfaces.',
-    status: 'En desarrollo',
+    status: 'Beta para Windows',
     technologies: ['Python', 'FastAPI', 'React', 'pandas', 'PySide6', 'Docker'],
-    visual: 'data', image: null, repository: null, demo: null,
+    visual: 'data',
+    image: { src: '/images/analytio-overview.png', alt: 'Resumen de Analytio con filas, columnas, completitud y vista previa de un CSV de ventas', width: 1440, height: 1000 },
+    repository: null, demo: 'https://analytio.app', demoLabel: 'Visitar web',
     sourceNotice: 'Código privado',
-    evidence: 'Herramienta personal en desarrollo. El alcance actual se centra en CSV; Excel, Parquet y detección de información sensible no forman parte de las funciones disponibles.',
+    evidence: 'Herramienta personal con beta para Windows y web oficial en analytio.app. Las capturas muestran la aplicación con un CSV de ejemplo. El alcance actual se centra en CSV; Excel, Parquet y detección de información sensible no forman parte de las funciones disponibles.',
     architecture: [
       { name: 'Interfaces', detail: 'Web · CLI · Escritorio' },
       { name: 'API HTTP', detail: 'FastAPI · validación' },
@@ -49,8 +52,11 @@ export const projects: Project[] = [
       { id: 'architecture', title: 'Arquitectura técnica', paragraphs: ['El frontend y la API son servicios independientes. Nginx sirve la aplicación React; FastAPI expone los endpoints de análisis. La URL de la API y los orígenes autorizados se configuran por separado.', 'Esta separación permite ejecutar las interfaces de manera independiente y mantener el análisis fuera de la capa visual.'] },
       { id: 'implemented', title: 'Qué permite hacer', items: ['Importar CSV con separador y codificación configurables.', 'Explorar columnas, tipos, valores ausentes y frecuencias.', 'Cambiar la interpretación de tipos y restaurar el modo automático.', 'Crear gráficos de barras, líneas y dispersión.', 'Exportar resultados JSON y gráficos.'] },
       { id: 'decisions', title: 'Decisiones técnicas', paragraphs: ['El procesamiento se comparte entre interfaces para evitar duplicar las reglas de análisis.', 'Una conversión fallida conserva el resultado anterior y no modifica el archivo original. Las pruebas también cubren cabeceras ambiguas, nulos y enteros grandes cuya precisión debe conservarse.'] },
-      { id: 'media', title: 'Vista del proyecto', paragraphs: ['La composición técnica que acompaña este caso es ilustrativa. Las capturas reales y una demostración pública están pendientes de incorporar.'] },
-      { id: 'next', title: 'Estado actual', paragraphs: ['En preparación de una beta privada para Windows. La aplicación web y el escritorio comparten el motor; sus recorridos y límites de uso son distintos. El código se mantiene privado.'] },
+      { id: 'media', title: 'Vista del proyecto', paragraphs: ['Capturas reales de Analytio en español con un CSV de ventas de ejemplo: resumen del dataset, exploración de columnas y constructor de gráficos.'], images: [
+        { src: '/images/analytio-columns.png', alt: 'Exploración de columnas en Analytio con tipos, frecuencias y estadísticas de fecha y región', width: 1440, height: 1000, caption: 'Exploración de columnas: tipos detectados, valores nulos, frecuencias y estadísticas.' },
+        { src: '/images/analytio-charts.png', alt: 'Constructor de gráficos de Analytio con una serie temporal de ventas', width: 1440, height: 1000, caption: 'Constructor de gráficos: evolución de ventas a partir del CSV de ejemplo.' },
+      ] },
+      { id: 'next', title: 'Estado actual', paragraphs: ['Beta para Windows disponible desde la web oficial. La versión web de la aplicación sigue en preparación. La aplicación web y el escritorio comparten el motor; sus recorridos y límites de uso son distintos. El código se mantiene privado.'] },
     ],
   },
   {
