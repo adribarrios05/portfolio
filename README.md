@@ -107,12 +107,6 @@ npm.cmd test
 
 Cubren navegación, casos de estudio, menú y Escape, ausencia de desbordamiento de 320 a 1440 px, movimiento reducido, navegación sin JavaScript, recursos SEO y WCAG A/AA con axe. Las comprobaciones automáticas no sustituyen una revisión con lectores de pantalla ni pruebas en dispositivos físicos.
 
-Para generar capturas de revisión, con un servidor activo:
-
-```powershell
-node scripts/capture.mjs
-```
-
 ## Producción
 
 ```powershell
@@ -127,7 +121,7 @@ $env:SITE_URL = 'https://tu-dominio.example'
 npm.cmd run build
 ```
 
-La identidad de Sites y el directorio estático están en `.openai/hosting.json`. El sitio de revisión de Sites conserva acceso privado. Cambiar de dominio no requiere modificar los componentes.
+La publicación en GitHub Pages está configurada en `.github/workflows/deploy.yml`. El workflow compila con `SITE_URL=https://adribarrios05.github.io` y `SITE_BASE=/portfolio` al subir cambios a `main`. Consulta [la guía de GitHub Pages](docs/GITHUB-PAGES.md) para configurar y comprobar la publicación.
 
 `public/og.png` se puede reemplazar por una imagen de 1200 × 630. `scripts/generate-og.mjs` documenta la composición original y utiliza el paquete `sharp` incluido por Astro; ejecuta `node scripts/generate-og.mjs` para regenerarla.
 
