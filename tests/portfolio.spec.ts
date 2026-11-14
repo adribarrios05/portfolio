@@ -41,11 +41,11 @@ test('navigation follows sections and mobile menu supports keyboard', async ({ p
 
 test('all pages fit narrow viewports and respect reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const width of [320, 390, 768, 1024, 1440]) {
+  for (const width of [320, 390, 768, 1024, 1312, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     for (const path of ['/', '/projects/analytio/', '/projects/simple-calendar/', '/projects/parkify/']) {
       await page.goto(path);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
       const textSizes = await page.evaluate(() => {
         const sizes = new Set<number>();
         const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);

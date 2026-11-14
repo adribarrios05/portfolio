@@ -649,13 +649,8 @@ body {
   position: relative;
 }
 
-.hero:before {
-  content: "";
-  z-index: -1;
-  pointer-events: none;
+.hero-backdrop {
   background: radial-gradient(at 10% 65%, #1327469c, #0000 60%), radial-gradient(at 90% 10%, #3221408a, #0000 62%);
-  position: absolute;
-  inset: 0 calc(600px - 50vw);
 }
 
 .hero-kicker {
@@ -839,23 +834,7 @@ body {
   border-color: #76708c;
 }
 
-@media (width >= 1312px) {
-  .hero:before {
-    inset-inline: calc(600px - 50vw);
-  }
-}
-
-@media (width <= 1311px) {
-  .hero:before {
-    inset-inline: -56px;
-  }
-}
-
 @media (width <= 1100px) {
-  .hero:before {
-    inset-inline: -40px;
-  }
-
   .hero {
     gap: 0 40px;
   }
@@ -870,10 +849,6 @@ body {
 }
 
 @media (width <= 899px) {
-  .hero:before {
-    inset-inline: -24px;
-  }
-
   .hero {
     gap: 0 30px;
   }
@@ -889,10 +864,6 @@ body {
 }
 
 @media (width <= 599px) {
-  .hero:before {
-    inset-inline: -20px;
-  }
-
   .hero {
     padding-top: 26px;
   }

@@ -9,6 +9,7 @@ import { profile, education, technologies } from '../data/profile';
 import { projects } from '../data/projects';
 ---
 <BaseLayout home>
+  <div class="hero-backdrop">
   <section class="hero container" aria-labelledby="hero-title">
     <div class="hero-kicker mono"><span class="small-square"></span> {profile.role.toUpperCase()}<span class="hero-edition">PORTFOLIO PERSONAL / 01</span></div>
     <div class="hero-title-wrap">
@@ -21,6 +22,7 @@ import { projects } from '../data/projects';
     </div>
     <div class="hero-footer"><SocialLinks/><a class="scroll-hint mono" href="#projects">SCROLL TO EXPLORE<span>↓</span></a></div>
   </section>
+  </div>
 
   <section id="projects" class="section container" data-section aria-labelledby="projects-label">
     <div class="projects-heading" id="projects-label"><SectionHeading number="01" label="PROYECTOS SELECCIONADOS" title="Ideas que se convierten
