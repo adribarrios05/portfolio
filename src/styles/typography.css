@@ -1,0 +1,121 @@
+/* Five sizes for the portfolio UI. Project illustrations retain their own scale. */
+:root {
+  --type-label: .875rem;
+  --type-body: 1rem;
+  --type-heading: 1.5rem;
+  --type-title: 2.75rem;
+  --type-display: 7.5rem;
+}
+
+body { font-size: var(--type-body); font-weight: 400; }
+h1, h2, h3, h4, strong, b { font-weight: 600; }
+button, input, select, textarea { font-size: inherit; }
+
+.hero h1 { font-size: var(--type-display); font-weight: 400; }
+.case-header h1, .not-found h1,
+.section-heading h2, .projects-heading h2,
+#experience .section-heading h2, #about .section-heading h2,
+#education .section-heading h2, .contact-section h2,
+.next-project h2 {
+  font-size: var(--type-title);
+  font-weight: 400;
+}
+
+.hero-focus, .about-statement, .project-card h3,
+.project-card:first-child h3, .timeline-item h3,
+.education-card h3, .case-section h2, .case-lead,
+.technology-header h3, .erasmus-note h3, .wordmark {
+  font-size: var(--type-heading);
+}
+.project-card h3, .about-statement { font-weight: 400; }
+.hero-focus, .timeline-item h3, .education-card h3,
+.case-section h2, .technology-header h3, .case-lead { font-weight: 600; }
+
+.hero-intro, .section-description, .about-copy,
+.about-copy p, .project-card .project-summary,
+.project-card:first-child .project-summary, .project-problem,
+.timeline-item p, .responsibilities, .responsibilities li,
+.education-card > p, .technology-group ul,
+.contact-section p:not(.eyebrow), .contact-email,
+.case-summary, .case-section p, .case-section > ul,
+.evidence-section p, .architecture-flow h3,
+.media-pending p, .erasmus-note p, .not-found p:not(.eyebrow) {
+  font-size: var(--type-body);
+}
+.project-summary, .architecture-flow h3 { font-weight: 600; }
+.contact-email { font-weight: 500; }
+.responsibilities li { line-height: 1.65; }
+
+.mono, .eyebrow, .hero-kicker, .hero-edition,
+.wordmark-name, #primary-nav a, .social-links a,
+.site-footer .social-links a, .site-footer > p,
+.scroll-hint, .scroll-hint span, .about-note,
+.technology-header p, .technology-group h4, .technology-group p,
+.timeline-period, .timeline-period span, .pending-fields,
+.education-top, .education-meta, .education-meta .mono,
+.project-meta, .case-header .project-meta, .tags li,
+.visual-caption, .projects-end, .contact-details > .mono,
+.pending-note, .back-link, .case-kind, .case-figure figcaption,
+.case-index > span, .case-index a, .architecture-flow span,
+.architecture-flow li::before, .media-pending span {
+  font-size: var(--type-label);
+}
+.wordmark-name, .eyebrow, .technology-group h4 { font-weight: 500; }
+.project-meta { flex-wrap: wrap; gap: 8px 18px; }
+.visual-caption { max-width: calc(100% - 70px); line-height: 1.4; }
+.hero-footer { flex-wrap: wrap; gap: 20px; }
+.scroll-hint { align-items: center; }
+.education-card h3 { min-height: 0; }
+.contact-email { overflow-wrap: anywhere; }
+
+/* Actions have explicit roles, independent of their position among siblings. */
+.button, .text-link {
+  font-size: var(--type-label);
+  font-weight: 500;
+}
+.button {
+  min-height: 48px;
+  padding: 12px 20px;
+  gap: 16px;
+  border: 1px solid var(--button-border);
+  border-radius: 0;
+  line-height: 1.4;
+}
+.button-primary {
+  background: var(--button);
+  color: #eef0ff;
+  font-weight: 600;
+}
+.button-secondary { background: transparent; color: #d2d5e8; }
+.button-primary:hover { background: var(--button-hover); border-color: var(--accent-soft); }
+.button-secondary:hover { background: var(--button); border-color: var(--accent-soft); }
+.button::after { display: none; }
+.button > svg, .hero-actions .button svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.text-link, .social-links a, .back-link, .case-index a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.text-link { color: #c6c8ed; }
+.project-links { align-items: center; gap: 12px 20px; }
+.case-index nav { gap: 4px; }
+
+@media (max-width: 899px) {
+  :root { --type-title: 2rem; --type-display: 5rem; }
+  #primary-nav { flex-wrap: wrap; gap: 4px 16px; justify-content: flex-start; }
+  #primary-nav a { min-height: 44px; }
+}
+@media (max-width: 599px) {
+  :root { --type-heading: 1.375rem; --type-display: 4.5rem; }
+  .hero-actions { flex-wrap: wrap; }
+  .social-links { gap: 4px 18px; }
+  .hero-footer { gap: 12px; }
+  .technology-grid { grid-template-columns: 1fr; }
+  .technology-group ul { flex-direction: row; }
+  .education-top { flex-wrap: wrap; }
+  .contact-email { font-size: var(--type-body); }
+}

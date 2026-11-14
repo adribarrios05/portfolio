@@ -95,9 +95,9 @@ export const technologies = [
 ];
 
 export const navigation = [
-  { id: 'about', label: 'Sobre mí' },
-  { id: 'experience', label: 'Experiencia' },
-  { id: 'education', label: 'Formación' },
   { id: 'projects', label: 'Proyectos' },
+  { id: 'experience', label: 'Experiencia' },
+  { id: 'about', label: 'Sobre mí' },
+  { id: 'education', label: 'Formación' },
   { id: 'contact', label: 'Contacto' },
 ];

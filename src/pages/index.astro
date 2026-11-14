@@ -19,17 +19,14 @@ import { projects } from '../data/projects';
       <div><p class="hero-focus">{profile.focus}</p><p class="hero-intro">{profile.introduction}</p></div>
       <div class="hero-actions"><a class="button button-primary" href="#projects">Explorar proyectos<Arrow/></a><a class="button button-secondary" href="#contact">Hablemos<Arrow diagonal/></a></div>
     </div>
-    <div class="hero-footer"><SocialLinks/><a class="scroll-hint mono" href="#about">SCROLL TO EXPLORE<span>↓</span></a></div>
+    <div class="hero-footer"><SocialLinks/><a class="scroll-hint mono" href="#projects">SCROLL TO EXPLORE<span>↓</span></a></div>
   </section>
 
-  <section id="about" class="section section-surface" data-section aria-labelledby="about-title">
-    <div class="container">
-      <SectionHeading number="01" label="SOBRE MÍ" title="Curiosidad por entender.
-      Criterio para construir."/>
-      <div class="about-grid"><p class="about-statement" id="about-title" data-reveal>Del problema<br/>al sistema.<br/><span>Y de los datos<br/>a las decisiones.</span></p><div class="about-copy" data-reveal>{profile.about.map((paragraph) => <p>{paragraph}</p>)}<span class="mono about-note">APRENDER / CONSTRUIR / ITERAR</span></div></div>
-      <div class="technology-header" data-reveal><h3>Herramientas con las que trabajo</h3><p>Aplicadas en mi experiencia y mis proyectos.</p></div>
-      <div class="technology-grid">{technologies.map((group, index) => <article class="technology-group" data-reveal style={`--reveal-delay:${index % 3 * 70}ms`}><h4 class="mono">{group.category}</h4><ul>{group.items.map((technology) => <li>{technology}</li>)}</ul><p>{group.context}</p></article>)}</div>
-    </div>
+  <section id="projects" class="section container" data-section aria-labelledby="projects-label">
+    <div class="projects-heading" id="projects-label"><SectionHeading number="01" label="PROYECTOS SELECCIONADOS" title="Ideas que se convierten
+      en software." description="Proyectos personales. Problemas concretos, decisiones técnicas y aprendizaje en cada iteración."/><span class="project-count mono">({String(projects.length).padStart(2, '0')})</span></div>
+    <div class="projects-list">{projects.map((project) => <ProjectCard project={project}/>)}</div>
+    <p class="projects-end mono">EXPLORACIONES EN BACKEND, DATOS Y APLICACIONES.</p>
   </section>
 
   <section id="experience" class="section container" data-section aria-labelledby="experience-label">
@@ -37,18 +34,21 @@ import { projects } from '../data/projects';
     <Timeline/>
   </section>
 
-  <section id="education" class="section section-surface" data-section aria-labelledby="education-label">
-    <div class="container"><div id="education-label"><SectionHeading number="03" label="FORMACIÓN" title="Una base técnica.
-      Una mirada abierta."/></div>
-      <div class="education-grid">{education.map((item, index) => <article class="education-card" data-reveal style={`--reveal-delay:${index * 90}ms`}><div class="education-top mono"><span>{item.kind}</span><span>0{index + 1}</span></div><h3>{item.title}</h3><p>{item.description}</p><div class="education-meta"><span>{item.institution || 'Institución pendiente'}</span><span class="mono">{item.period || 'Fechas pendientes'}</span></div></article>)}</div>
+  <section id="about" class="section section-surface" data-section aria-labelledby="about-title">
+    <div class="container">
+      <SectionHeading number="03" label="SOBRE MÍ" title="Curiosidad por entender.
+      Criterio para construir."/>
+      <div class="about-grid"><p class="about-statement" id="about-title" data-reveal>Del problema<br/>al sistema.<br/><span>Y de los datos<br/>a las decisiones.</span></p><div class="about-copy" data-reveal>{profile.about.map((paragraph) => <p>{paragraph}</p>)}<span class="mono about-note">APRENDER / CONSTRUIR / ITERAR</span></div></div>
+      <div class="technology-header" data-reveal><h3>Herramientas con las que trabajo</h3><p>Aplicadas en mi experiencia y mis proyectos.</p></div>
+      <div class="technology-grid">{technologies.map((group, index) => <article class="technology-group" data-reveal style={`--reveal-delay:${index % 3 * 70}ms`}><h4 class="mono">{group.category}</h4><ul>{group.items.map((technology) => <li>{technology}</li>)}</ul><p>{group.context}</p></article>)}</div>
     </div>
   </section>
 
-  <section id="projects" class="section container" data-section aria-labelledby="projects-label">
-    <div class="projects-heading" id="projects-label"><SectionHeading number="04" label="PROYECTOS SELECCIONADOS" title="Ideas que se convierten
-      en software." description="Proyectos personales. Problemas concretos, decisiones técnicas y aprendizaje en cada iteración."/><span class="project-count mono">({String(projects.length).padStart(2, '0')})</span></div>
-    <div class="projects-list">{projects.map((project) => <ProjectCard project={project}/>)}</div>
-    <p class="projects-end mono">EXPLORACIONES EN BACKEND, DATOS Y APLICACIONES.</p>
+  <section id="education" class="section section-surface" data-section aria-labelledby="education-label">
+    <div class="container"><div id="education-label"><SectionHeading number="04" label="FORMACIÓN" title="Una base técnica.
+      Una mirada abierta."/></div>
+      <div class="education-grid">{education.map((item, index) => <article class="education-card" data-reveal style={`--reveal-delay:${index * 90}ms`}><div class="education-top mono"><span>{item.kind}</span><span>0{index + 1}</span></div><h3>{item.title}</h3><p>{item.description}</p><div class="education-meta"><span>{item.institution || 'Institución pendiente'}</span><span class="mono">{item.period || 'Fechas pendientes'}</span></div></article>)}</div>
+    </div>
   </section>
 
   <section id="contact" class="section contact-section" data-section aria-labelledby="contact-title">

@@ -46,6 +46,21 @@ test('all pages fit narrow viewports and respect reduced motion', async ({ page 
     for (const path of ['/', '/projects/analytio/', '/projects/simple-calendar/', '/projects/parkify/']) {
       await page.goto(path);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+      const textSizes = await page.evaluate(() => {
+        const sizes = new Set<number>();
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node: Node | null;
+        while ((node = walker.nextNode())) {
+          const element = node.parentElement;
+          if (!element || !node.textContent?.trim() || element.closest('[aria-hidden="true"], script, style, .sr-only')) continue;
+          const style = getComputedStyle(element);
+          if (!element.getBoundingClientRect().width || style.visibility === 'hidden') continue;
+          sizes.add(Number.parseFloat(style.fontSize));
+        }
+        return [...sizes];
+      });
+      expect(textSizes.length).toBeLessThanOrEqual(5);
+      expect(Math.min(...textSizes)).toBeGreaterThanOrEqual(14);
       expect(await page.locator('html').evaluate((element) => getComputedStyle(element).scrollBehavior)).toBe('auto');
       expect(await page.locator('h1').evaluate((element) => getComputedStyle(element).animationName)).toBe('none');
     }
@@ -75,7 +90,7 @@ test('progressive enhancement keeps content and navigation usable without JavaSc
 test('scroll reveals content and changing motion preference makes it visible', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
-  const heading = page.locator('#projects .section-heading');
+  const heading = page.locator('#contact .eyebrow');
   await expect(heading).toHaveClass(/will-reveal/);
   await heading.scrollIntoViewIfNeeded();
   await expect(heading).toHaveClass(/is-visible/);
